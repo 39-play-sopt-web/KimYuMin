@@ -3,9 +3,7 @@
 
 .nav {
   position: sticky;
-  left: 50px;
   top: 150px;
-  width: 180px;
 }
 .nav ul {
   width: 100%;

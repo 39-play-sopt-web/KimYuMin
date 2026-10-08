@@ -1,0 +1,11 @@
+.page-layout {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+  padding: 150px 50px 40px;
+}
+
+.page-layout > main {
+  min-width: 0;
+}
