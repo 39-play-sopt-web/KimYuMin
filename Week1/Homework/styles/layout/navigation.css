@@ -1,0 +1,31 @@
+@import url("../common/base.css");
+@import url("../common/color.css");
+
+.nav {
+  position: sticky;
+  left: 50px;
+  top: 150px;
+  width: 180px;
+}
+.nav ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.nav a {
+  display: block;
+  text-align: left;
+  padding: 25px 30px;
+  background-color: var(--color-primary);
+  border-radius: 15px;
+}
+.nav li:first-child a {
+  border-radius: 15px 15px 5px 5px;
+}
+.nav li:last-child a {
+  border-radius: 5px 5px 15px 15px;
+}
+.nav a:hover {
+  background-color: var(--color-hover);
+}
