@@ -1,0 +1,26 @@
+@import url("../common/base.css");
+@import url("../common/color.css");
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 100;
+  background-color: var(--color-primary);
+}
+.avatar,
+.logo {
+  transition: box-shadow 0.2s;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.avatar:hover {
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
