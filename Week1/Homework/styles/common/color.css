@@ -10,6 +10,11 @@
   --color-primary: #94cde180;
   --color-shadow: #7a7878;
   --color-hover: #4f93a8;
+  --color-card: #ffffffb3;
+  --color-button-like: #a3d4e6b0;
+  --color-button-like-hover: #56aeccb0;
+  --color-button-dislike: #fcb4afb0;
+  --color-button-dislike-hover: #e57b73b0;
 }
 
 body {
