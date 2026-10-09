@@ -2,6 +2,7 @@
   position: sticky;
   top: 150px;
 }
+
 .nav ul {
   margin: 0;
   padding: 0;
@@ -10,18 +11,23 @@
   flex-direction: column;
   gap: 1px;
 }
+
 .nav a {
   display: block;
   padding: 25px 30px;
   background-color: var(--color-primary);
   border-radius: 15px;
+  transition: background-color 0.2s;
 }
+
 .nav li:first-child a {
   border-radius: 15px 15px 5px 5px;
 }
+
 .nav li:last-child a {
   border-radius: 5px 5px 15px 15px;
 }
+
 .nav a:hover {
   background-color: var(--color-hover);
 }

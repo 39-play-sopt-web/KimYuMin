@@ -3,12 +3,16 @@
   padding: 40px;
   border-radius: 16px;
 }
-.to-web p::before {
+
+.to-web p::before,
+.to-web p::after {
   content: "❤️";
+}
+
+.to-web p::before {
   margin-right: 4px;
 }
 
 .to-web p::after {
-  content: "❤️";
   margin-left: 4px;
 }

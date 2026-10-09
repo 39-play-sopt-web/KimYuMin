@@ -3,10 +3,19 @@
 *::after {
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--color-background-gradient);
+  color: var(--color-text);
 }
+
 body,
 h1,
 h2,

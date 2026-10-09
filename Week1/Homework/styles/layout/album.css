@@ -5,6 +5,7 @@
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
+
 .album-list img {
   width: 240px;
   height: 180px;
@@ -14,9 +15,11 @@
   display: block;
   border-radius: 10px;
 }
+
 .album-list::-webkit-scrollbar {
   display: none;
 }
+
 .album-list:hover {
   overflow-x: auto;
 }

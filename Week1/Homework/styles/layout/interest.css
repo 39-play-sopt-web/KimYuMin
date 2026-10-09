@@ -16,6 +16,7 @@
     transform 0.2s,
     box-shadow 0.2s;
 }
+
 .interest-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px var(--color-shadow);
@@ -25,6 +26,7 @@
 .interest-card h3 {
   grid-column: span 2;
 }
+
 .interest-card img {
   display: block;
   width: 100%;
@@ -45,7 +47,8 @@
   justify-self: end;
   background-color: var(--color-button-like);
 }
-.like:hover {
+
+.interest-card .like:hover {
   background-color: var(--color-button-like-hover);
 }
 
@@ -53,7 +56,8 @@
   justify-self: start;
   background-color: var(--color-button-dislike);
 }
-.dislike:hover {
+
+.interest-card .dislike:hover {
   background-color: var(--color-button-dislike-hover);
 }
 
