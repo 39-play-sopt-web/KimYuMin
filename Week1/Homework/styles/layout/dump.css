@@ -1,17 +1,14 @@
+@import url("../common/base.css");
+@import url("../common/color.css");
+
 .dump-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(3, 180px);
   gap: 10px;
-}
-.dump-item {
-  overflow: hidden;
-  border-radius: 10px;
+  margin-top: 40px;
 }
 .dump-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   transition: transform 0.2s;
 }
 .wide {
