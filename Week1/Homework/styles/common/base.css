@@ -6,25 +6,26 @@
 
 body,
 h1,
-h2,
-h3,
-p {
+h2 {
   margin: 0;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/* 페이지 전체 배치 */
+.page-layout {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+  padding: 150px 50px 40px;
 }
 
-.photo-item {
-  border-radius: 10px;
-  overflow: hidden;
+.page-layout > main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 }
 
-.photo-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+main > section > h2 {
+  margin-bottom: 40px;
 }

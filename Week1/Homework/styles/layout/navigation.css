@@ -1,19 +1,17 @@
-@import url("../common/base.css");
-@import url("../common/color.css");
-
 .nav {
   position: sticky;
   top: 150px;
 }
 .nav ul {
-  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1px;
 }
 .nav a {
   display: block;
-  text-align: left;
   padding: 25px 30px;
   background-color: var(--color-primary);
   border-radius: 15px;

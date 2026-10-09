@@ -3,23 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>유민 블로그</title>
+    <title>유민's 블로그</title>
+    <!-- 공통 -->
+    <link rel="stylesheet" href="./styles/common/base.css" />
+    <link rel="stylesheet" href="./styles/common/color.css" />
+
+    <!-- 영역 별 -->
     <link rel="stylesheet" href="styles/layout/header.css" />
-    <link rel="stylesheet" href="styles/layout/page.css" />
     <link rel="stylesheet" href="styles/layout/navigation.css" />
     <link rel="stylesheet" href="styles/layout/dump.css" />
     <link rel="stylesheet" href="styles/layout/album.css" />
   </head>
 
   <body>
+    <!-- 헤더 -->
     <header class="header">
-      <img class="avatar" src="images/avatar.png" alt="유민 프로필 사진" />
-      <h1>유민 블로그</h1>
+      <img class="avatar" src="images/avatar.png" alt="프로필 사진" />
+      <h1>유민's 블로그</h1>
       <a href="https://github.com/yumin-kim2">
         <img class="logo" src="images/github.png" alt="깃허브 소셜 아이콘" />
       </a>
     </header>
 
+    <!-- 사이드 네비게이션-->
     <div class="page-layout">
       <nav class="nav">
         <ul>
@@ -31,113 +37,43 @@
       </nav>
 
       <main>
+        <!-- 포토 덤프 -->
         <section class="dump" id="dump">
           <h2>📷 포토 덤프</h2>
           <div class="dump-grid">
-            <div class="dump-item photo-item">
-              <img
-                class="dump-image photo-image"
-                src="images/photo dump/dump1.jpeg"
-                alt="포토덤프 이미지 1"
-              />
+            <div>
+              <img src="images/photo dump/dump1.jpeg" alt="별" />
             </div>
-            <div class="dump-item photo-item">
-              <img
-                class="dump-image photo-image"
-                src="images/photo dump/dump2.jpeg"
-                alt="포토덤프 이미지 2"
-              />
+            <div>
+              <img src="images/photo dump/dump2.jpeg" alt="티모" />
             </div>
-            <div class="dump-item wide photo-item">
-              <img
-                class="dump-image photo-image"
-                src="images/photo dump/dump3.jpeg"
-                alt="포토덤프 이미지 3"
-              />
+            <div class="wide">
+              <img src="images/photo dump/dump3.jpeg" alt="워크샵 2조" />
             </div>
-            <div class="dump-item large photo-item">
-              <img
-                class="dump-image photo-image"
-                src="images/photo dump/dump4.jpeg"
-                alt="포토덤프 이미지 4"
-              />
+            <div class="large">
+              <img src="images/photo dump/dump4.jpeg" alt="도토리" />
             </div>
-            <div class="dump-item photo-item">
-              <img
-                class="dump-image photo-image"
-                src="images/photo dump/dump5.jpeg"
-                alt="포토덤프 이미지 5"
-              />
+            <div>
+              <img src="images/photo dump/dump5.jpeg" alt="불꽃" />
             </div>
-            <div class="dump-item photo-item">
-              <img
-                class="dump-image photo-image"
-                src="images/photo dump/dump6.jpeg"
-                alt="포토덤프 이미지 6"
-              />
+            <div>
+              <img src="images/photo dump/dump6.jpeg" alt="거울샷" />
             </div>
           </div>
         </section>
 
+        <!-- 사진첩 -->
         <section class="album" id="album">
           <h2>💕 좋아하는 것: 먼작귀 ( ´͈ ᵕ `͈ )◞♡</h2>
           <div class="album-list">
-            <div class="album-item photo-item">
-              <img
-                class="album-image photo-image"
-                src="images/photo album/album1.jpeg"
-                alt="좋아하는 것 이미지 1"
-              />
-            </div>
-            <div class="album-item photo-item">
-              <img
-                class="album-image photo-image"
-                src="images/photo album/album2.jpeg"
-                alt="좋아하는 것 이미지 2"
-              />
-            </div>
-            <div class="album-item photo-item">
-              <img
-                class="album-image photo-image"
-                src="images/photo album/album3.jpeg"
-                alt="좋아하는 것 이미지 3"
-              />
-            </div>
-            <div class="album-item photo-item">
-              <img
-                class="album-image photo-image"
-                src="images/photo album/album4.jpeg"
-                alt="좋아하는 것 이미지 4"
-              />
-            </div>
-            <div class="album-item photo-item">
-              <img
-                class="album-image photo-image"
-                src="images/photo album/album5.jpeg"
-                alt="좋아하는 것 이미지 5"
-              />
-            </div>
-            <div class="album-item photo-item">
-              <img
-                class="album-image photo-image"
-                src="images/photo album/album6.jpeg"
-                alt="좋아하는 것 이미지 6"
-              />
-            </div>
-            <div class="album-item photo-item">
-              <img
-                class="album-image photo-image"
-                src="images/photo album/album7.jpeg"
-                alt="좋아하는 것 이미지 7"
-              />
-            </div>
-            <div class="album-item photo-item">
-              <img
-                class="album-image photo-image"
-                src="images/photo album/album8.jpeg"
-                alt="좋아하는 것 이미지 8"
-              />
-            </div>
+            <img src="images/photo album/album1.jpeg" alt="" />
+            <img src="images/photo album/album2.jpeg" alt="" />
+            <img src="images/photo album/album3.jpeg" alt="" />
+            <img src="images/photo album/album4.jpeg" alt="" />
+            <img src="images/photo album/album5.jpeg" alt="" />
+            <img src="images/photo album/album6.jpeg" alt="" />
+            <img src="images/photo album/album7.jpeg" alt="" />
+            <img src="images/photo album/album8.jpeg" alt="" />
           </div>
         </section>
       </main>
