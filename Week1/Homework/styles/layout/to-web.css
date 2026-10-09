@@ -1,0 +1,14 @@
+.message {
+  background-color: var(--color-message);
+  padding: 40px;
+  border-radius: 16px;
+}
+.to-web p::before {
+  content: "❤️";
+  margin-right: 4px;
+}
+
+.to-web p::after {
+  content: "❤️";
+  margin-left: 4px;
+}
