@@ -1,0 +1,34 @@
+@import url("../common/base.css");
+@import url("../common/color.css");
+
+.album {
+  margin-top: 150px;
+}
+.album-list {
+  display: flex;
+  gap: 10px;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: hidden;
+  margin-top: 40px;
+  scrollbar-width: none;
+}
+.album-list::-webkit-scrollbar {
+  display: none;
+}
+.album-list:hover {
+  overflow-x: auto;
+}
+.album-item {
+  width: 240px;
+  height: 180px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+.album-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
