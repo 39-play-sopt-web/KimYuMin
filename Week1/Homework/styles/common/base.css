@@ -40,6 +40,10 @@ p {
   gap: 80px;
 }
 
+main > section {
+  scroll-margin-top: 100px;
+}
+
 main > section > h2 {
   margin-bottom: 40px;
 }
