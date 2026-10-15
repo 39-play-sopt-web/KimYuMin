@@ -1,13 +1,14 @@
 import Card from "./Card";
 
-export default function GameBoard({ numbers, nextNumber, onNumberClick }) {
+export default function GameBoard({ numbers, nextNumber, clickedNumber, onNumberClick }) {
   return (
     <div className="mx-auto grid w-full max-w-80 grid-cols-3 gap-2">
       {numbers.map((number) => (
         <Card
           key={number}
           number={number}
-          selected={number < nextNumber}
+          selected={number === clickedNumber}
+          invisible={number < nextNumber}
           onClick={onNumberClick}
         />
       ))}
