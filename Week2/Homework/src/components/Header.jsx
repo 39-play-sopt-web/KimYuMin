@@ -1,4 +1,4 @@
-export default function Header({ activeMenu, level, selectGame, selectRanking, changeLevel }) {
+export default function Header({ activeMenu, level, selectGame, selectRanking, changeLevel, elapsed }) {
   return (
     <header className="grid grid-cols-3 items-center gap-4 border-b border-border p-4">
       <h1 className="font-bold">🔢 숫자 클릭 게임</h1>
@@ -35,7 +35,7 @@ export default function Header({ activeMenu, level, selectGame, selectRanking, c
           <option value="2">Level 2</option>
           <option value="3">Level 3</option>
         </select>
-        <span className="rounded px-3 py-1 bg-selected">0.00초</span>
+        <span className="rounded px-3 py-1 bg-selected">{(elapsed / 1000).toFixed(2)}초</span>
       </div>
     </header>
   );

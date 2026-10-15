@@ -1,9 +1,7 @@
 import GameBoard from "../components/GameBoard";
-import useGame from "../hooks/useGame";
 import { TOTAL_NUMBERS } from "../constants/game";
 
-export default function GamePage() {
-  const { numbers, nextNumber, clickedNumber, handleNumberClick } = useGame();
+export default function GamePage({ numbers, nextNumber, clickedNumber, handleNumberClick }) {
   const displayNumber = Math.min(nextNumber, TOTAL_NUMBERS);
 
   return (

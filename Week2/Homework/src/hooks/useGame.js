@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { BOARD_SIZE, TOTAL_NUMBERS } from "../constants/game";
 import random from "../utils/random";
+import useTimer from "./useTimer";
 
 export default function useGame() {
+  const { elapsed, startTimer, stopTimer } = useTimer();
   const [nextNumber, setNextNumber] = useState(1);
   const [clickedNumber, setClickedNumber] = useState(null);
   const clickTimer = useRef(null);
@@ -35,6 +37,9 @@ export default function useGame() {
 
     if (number !== nextNumber || clickTimer.current !== null) return;
 
+    if (number === 1) startTimer();
+    if (number === TOTAL_NUMBERS) stopTimer();
+
     setClickedNumber(number);
 
     clickTimer.current = setTimeout(() => {
@@ -51,5 +56,5 @@ export default function useGame() {
     }, 150);
   }
 
-  return { numbers, nextNumber, clickedNumber, handleNumberClick };
+  return { numbers, nextNumber, clickedNumber, elapsed, handleNumberClick };
 }
