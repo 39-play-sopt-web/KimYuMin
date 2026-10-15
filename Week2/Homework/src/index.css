@@ -2,8 +2,13 @@
 @import "./styles/colors.css";
 
 @layer base {
-  body {
+  #root {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
     background-color: var(--color-surface);
     color: var(--color-primary);
     margin: 0;

@@ -1,14 +1,9 @@
-import useHeader from "../hooks/useHeader";
-
-export default function Header() {
-  const { activeMenu, level, selectGame, selectRanking, changeLevel } =
-    useHeader();
-
+export default function Header({ activeMenu, level, selectGame, selectRanking, changeLevel }) {
   return (
-    <header className="flex flex-wrap items-center justify-between gap-4 border-b border-border p-4">
+    <header className="grid grid-cols-3 items-center gap-4 border-b border-border p-4">
       <h1 className="font-bold">🔢 숫자 클릭 게임</h1>
 
-      <nav aria-label="메인 메뉴" className="flex gap-2">
+      <nav aria-label="메인 메뉴" className="flex justify-center gap-2">
         <button
           type="button"
           onClick={selectGame}
@@ -28,7 +23,7 @@ export default function Header() {
       </nav>
 
       <div
-        className={`flex items-center gap-4 ${activeMenu === "ranking" ? "invisible" : ""}`}
+        className={`flex items-center justify-end gap-4 ${activeMenu === "ranking" ? "invisible" : ""}`}
       >
         <select
           aria-label="레벨 선택"
