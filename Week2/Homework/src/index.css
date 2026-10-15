@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "./styles/colors.css";
+
+@layer base {
+  body {
+    min-height: 100vh;
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+    margin: 0;
+    min-width: 320px;
+  }
+  button,
+  select {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: default;
+  }
+}
