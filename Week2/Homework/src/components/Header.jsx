@@ -1,0 +1,47 @@
+import useHeader from "../hooks/useHeader";
+
+export default function Header() {
+  const { activeMenu, level, selectGame, selectRanking, changeLevel } =
+    useHeader();
+
+  return (
+    <header className="flex flex-wrap items-center justify-between gap-4 border-b border-border p-4">
+      <h1 className="font-bold">🔢 숫자 클릭 게임</h1>
+
+      <nav aria-label="메인 메뉴" className="flex gap-2">
+        <button
+          type="button"
+          onClick={selectGame}
+          aria-pressed={activeMenu === "game"}
+          className="rounded px-3 py-1 aria-pressed:bg-selected"
+        >
+          게임
+        </button>
+        <button
+          type="button"
+          onClick={selectRanking}
+          aria-pressed={activeMenu === "ranking"}
+          className="rounded px-3 py-1 aria-pressed:bg-selected"
+        >
+          랭킹
+        </button>
+      </nav>
+
+      <div
+        className={`flex items-center gap-4 ${activeMenu === "ranking" ? "invisible" : ""}`}
+      >
+        <select
+          aria-label="레벨 선택"
+          value={level}
+          onChange={changeLevel}
+          className="rounded border border-border p-1"
+        >
+          <option value="1">Level 1</option>
+          <option value="2">Level 2</option>
+          <option value="3">Level 3</option>
+        </select>
+        <span className="rounded px-3 py-1 bg-selected">0.00초</span>
+      </div>
+    </header>
+  );
+}
