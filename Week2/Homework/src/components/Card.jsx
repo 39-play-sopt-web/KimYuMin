@@ -5,7 +5,7 @@ export default function Card({ number, selected = false, invisible = false, onCl
       value={number}
       onClick={onClick}
       aria-pressed={selected}
-      className={`aspect-square w-full rounded border border-border bg-card aria-pressed:bg-selected ${invisible ? "invisible" : ""}`}
+      className={`aspect-square w-28 rounded border border-border bg-card aria-pressed:bg-selected ${invisible ? "invisible" : ""}`}
     >
       {number}
     </button>

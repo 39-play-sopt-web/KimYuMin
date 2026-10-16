@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { BOARD_SIZE, TOTAL_NUMBERS } from "../constants/game";
-import random from "../utils/random";
+import { LEVELS } from "../constants/game";
+import createNumbers from "../utils/createNumbers";
 import useTimer from "./useTimer";
 
 export default function useGame() {
-  const { elapsed, startTimer, stopTimer } = useTimer();
+  const { elapsed, startTimer, stopTimer, resetTimer } = useTimer();
+  const [level, setLevel] = useState("1");
+  const { columns, totalNumbers } = LEVELS[level];
   const [nextNumber, setNextNumber] = useState(1);
   const [clickedNumber, setClickedNumber] = useState(null);
   const clickTimer = useRef(null);
@@ -12,25 +14,30 @@ export default function useGame() {
   useEffect(() => {
     return () => clearTimeout(clickTimer.current);
   }, []);
-  const [numbers, setNumbers] = useState(() => {
-    const initialNumbers = [];
+  const [numbers, setNumbers] = useState(() =>
+    createNumbers(1, totalNumbers / 2),
+  );
 
-    for (let number = 1; number <= BOARD_SIZE * BOARD_SIZE; number++) {
-      initialNumbers.push(number);
-    }
+  const [remainingNumbers, setRemainingNumbers] = useState(() =>
+    createNumbers(totalNumbers / 2 + 1, totalNumbers),
+  );
 
-    return random(initialNumbers);
-  });
+  function changeLevel(event) {
+    const nextLevel = event.target.value;
+    const nextSize = LEVELS[nextLevel].size;
+    const cardCount = nextSize * nextSize;
 
-  const [remainingNumbers, setRemainingNumbers] = useState(() => {
-    const laterNumbers = [];
-
-    for (let number = BOARD_SIZE * BOARD_SIZE + 1; number <= TOTAL_NUMBERS; number++) {
-      laterNumbers.push(number);
-    }
-
-    return random(laterNumbers);
-  });
+    clearTimeout(clickTimer.current);
+    clickTimer.current = null;
+    resetTimer();
+    setLevel(nextLevel);
+    setNextNumber(1);
+    setClickedNumber(null);
+    setNumbers(createNumbers(1, cardCount));
+    setRemainingNumbers(
+      createNumbers(cardCount + 1, LEVELS[nextLevel].totalNumbers),
+    );
+  }
 
   function handleNumberClick(event) {
     const number = Number(event.currentTarget.value);
@@ -38,15 +45,15 @@ export default function useGame() {
     if (number !== nextNumber || clickTimer.current !== null) return;
 
     if (number === 1) startTimer();
-    if (number === TOTAL_NUMBERS) stopTimer();
+    if (number === totalNumbers) stopTimer();
 
     setClickedNumber(number);
 
     clickTimer.current = setTimeout(() => {
       if (remainingNumbers.length > 0) {
-        setNumbers(numbers.map((item) => (
-          item === number ? remainingNumbers[0] : item
-        )));
+        setNumbers(
+          numbers.map((item) => (item === number ? remainingNumbers[0] : item)),
+        );
         setRemainingNumbers(remainingNumbers.slice(1));
       }
 
@@ -56,5 +63,15 @@ export default function useGame() {
     }, 150);
   }
 
-  return { numbers, nextNumber, clickedNumber, elapsed, handleNumberClick };
+  return {
+    numbers,
+    nextNumber,
+    clickedNumber,
+    elapsed,
+    level,
+    columns,
+    totalNumbers,
+    changeLevel,
+    handleNumberClick,
+  };
 }

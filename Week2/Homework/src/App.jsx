@@ -9,7 +9,12 @@ export default function App() {
 
   return (
     <>
-      <Header {...header} elapsed={game.elapsed} />
+      <Header
+        {...header}
+        level={game.level}
+        changeLevel={game.changeLevel}
+        elapsed={game.elapsed}
+      />
       {header.activeMenu === "game" && <GamePage {...game} />}
     </>
   );

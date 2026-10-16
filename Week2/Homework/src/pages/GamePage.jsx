@@ -1,8 +1,7 @@
 import GameBoard from "../components/GameBoard";
-import { TOTAL_NUMBERS } from "../constants/game";
 
-export default function GamePage({ numbers, nextNumber, clickedNumber, handleNumberClick }) {
-  const displayNumber = Math.min(nextNumber, TOTAL_NUMBERS);
+export default function GamePage({ numbers, nextNumber, clickedNumber, columns, totalNumbers, handleNumberClick }) {
+  const displayNumber = Math.min(nextNumber, totalNumbers);
 
   return (
     <main className="px-6 pt-[10vh] pb-6">
@@ -10,13 +9,14 @@ export default function GamePage({ numbers, nextNumber, clickedNumber, handleNum
         <span className="text-sm text-secondary">다음 숫자</span>
         <strong className="text-3xl">{displayNumber}</strong>
         <span className="text-sm text-secondary">
-          ({displayNumber} / {TOTAL_NUMBERS})
+          ({displayNumber} / {totalNumbers})
         </span>
       </p>
       <GameBoard
         numbers={numbers}
         nextNumber={nextNumber}
         clickedNumber={clickedNumber}
+        columns={columns}
         onNumberClick={handleNumberClick}
       />
     </main>

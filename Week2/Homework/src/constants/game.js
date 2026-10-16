@@ -1,2 +1,5 @@
-export const BOARD_SIZE = 3;
-export const TOTAL_NUMBERS = BOARD_SIZE * BOARD_SIZE * 2;
+export const LEVELS = {
+  1: { size: 3, columns: "grid-cols-3", totalNumbers: 18 },
+  2: { size: 4, columns: "grid-cols-4", totalNumbers: 32 },
+  3: { size: 5, columns: "grid-cols-5", totalNumbers: 50 },
+};

@@ -1,8 +1,8 @@
 import Card from "./Card";
 
-export default function GameBoard({ numbers, nextNumber, clickedNumber, onNumberClick }) {
+export default function GameBoard({ numbers, nextNumber, clickedNumber, columns, onNumberClick }) {
   return (
-    <div className="mx-auto grid w-full max-w-80 grid-cols-3 gap-2">
+    <div className={`mx-auto grid w-max gap-2 ${columns}`}>
       {numbers.map((number) => (
         <Card
           key={number}

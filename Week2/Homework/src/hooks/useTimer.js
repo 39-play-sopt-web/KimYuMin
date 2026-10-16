@@ -28,5 +28,12 @@ export default function useTimer() {
     }
   }
 
-  return { elapsed, startTimer, stopTimer };
+  function resetTimer() {
+    clearInterval(interval.current);
+    interval.current = null;
+    startedAt.current = null;
+    setElapsed(0);
+  }
+
+  return { elapsed, startTimer, stopTimer, resetTimer };
 }
