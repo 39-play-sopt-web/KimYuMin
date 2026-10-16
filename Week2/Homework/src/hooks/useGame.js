@@ -9,6 +9,7 @@ export default function useGame() {
   const { columns, totalNumbers } = LEVELS[level];
   const [nextNumber, setNextNumber] = useState(1);
   const [clickedNumber, setClickedNumber] = useState(null);
+  const [isFinished, setIsFinished] = useState(false);
   const clickTimer = useRef(null);
 
   useEffect(() => {
@@ -22,8 +23,7 @@ export default function useGame() {
     createNumbers(totalNumbers / 2 + 1, totalNumbers),
   );
 
-  function changeLevel(event) {
-    const nextLevel = event.target.value;
+  function resetGame(nextLevel) {
     const nextSize = LEVELS[nextLevel].size;
     const cardCount = nextSize * nextSize;
 
@@ -33,16 +33,25 @@ export default function useGame() {
     setLevel(nextLevel);
     setNextNumber(1);
     setClickedNumber(null);
+    setIsFinished(false);
     setNumbers(createNumbers(1, cardCount));
     setRemainingNumbers(
       createNumbers(cardCount + 1, LEVELS[nextLevel].totalNumbers),
     );
   }
 
+  function changeLevel(event) {
+    resetGame(event.target.value);
+  }
+
+  function closeResult() {
+    resetGame(level);
+  }
+
   function handleNumberClick(event) {
     const number = Number(event.currentTarget.value);
 
-    if (number !== nextNumber || clickTimer.current !== null) return;
+    if (number !== nextNumber || clickTimer.current !== null || isFinished) return;
 
     if (number === 1) startTimer();
     if (number === totalNumbers) stopTimer();
@@ -60,6 +69,7 @@ export default function useGame() {
       setNextNumber(number + 1);
       setClickedNumber(null);
       clickTimer.current = null;
+      if (number === totalNumbers) setIsFinished(true);
     }, 150);
   }
 
@@ -71,6 +81,8 @@ export default function useGame() {
     level,
     columns,
     totalNumbers,
+    isFinished,
+    closeResult,
     changeLevel,
     handleNumberClick,
   };
