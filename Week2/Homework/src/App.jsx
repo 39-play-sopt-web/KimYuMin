@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import GamePage from "./pages/GamePage";
+import RankingPage from "./pages/RankingPage";
 import useHeader from "./hooks/useHeader";
 import useGame from "./hooks/useGame";
 import GameResultModal from "./components/GameResultModal";
@@ -16,7 +17,7 @@ export default function App() {
         changeLevel={game.changeLevel}
         elapsed={game.elapsed}
       />
-      {header.activeMenu === "game" && <GamePage {...game} />}
+      {header.activeMenu === "game" ? <GamePage {...game} /> : <RankingPage />}
       {game.isFinished && (
         <GameResultModal level={game.level} elapsed={game.elapsed} onConfirm={game.closeResult} />
       )}
