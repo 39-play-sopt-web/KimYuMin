@@ -9,7 +9,7 @@ export default function GamePage({ numbers, nextNumber, clickedNumber, columns, 
         <span className="text-sm text-secondary">다음 숫자</span>
         <strong className="text-3xl">{displayNumber}</strong>
         <span className="text-sm text-secondary">
-          ({displayNumber} / {totalNumbers})
+          ({nextNumber - 1} / {totalNumbers})
         </span>
       </p>
       <GameBoard
