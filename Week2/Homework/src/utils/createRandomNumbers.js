@@ -1,4 +1,4 @@
-export default function createNumbers(start, end) {
+export default function createRandomNumbers(start, end) {
   const numbers = [];
 
   for (let number = start; number <= end; number++) {

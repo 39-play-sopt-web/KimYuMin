@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { LEVELS } from "../constants/game";
-import createNumbers from "../utils/createNumbers";
+import createRandomNumbers from "../utils/createRandomNumbers";
 import useTimer from "./useTimer";
 import { saveRecord } from "../utils/records";
 
@@ -17,11 +17,11 @@ export default function useGame() {
     return () => clearTimeout(clickTimer.current);
   }, []);
   const [numbers, setNumbers] = useState(() =>
-    createNumbers(1, totalNumbers / 2),
+    createRandomNumbers(1, totalNumbers / 2),
   );
 
   const [remainingNumbers, setRemainingNumbers] = useState(() =>
-    createNumbers(totalNumbers / 2 + 1, totalNumbers),
+    createRandomNumbers(totalNumbers / 2 + 1, totalNumbers),
   );
 
   function resetGame(nextLevel) {
@@ -35,9 +35,9 @@ export default function useGame() {
     setNextNumber(1);
     setClickedNumber(null);
     setIsFinished(false);
-    setNumbers(createNumbers(1, cardCount));
+    setNumbers(createRandomNumbers(1, cardCount));
     setRemainingNumbers(
-      createNumbers(cardCount + 1, LEVELS[nextLevel].totalNumbers),
+      createRandomNumbers(cardCount + 1, LEVELS[nextLevel].totalNumbers),
     );
   }
 
