@@ -1,4 +1,4 @@
-import { RECORDS_KEY } from "../constants/storage";
+const RECORDS_KEY = "number-game-records";
 
 export function getRecords() {
   const records = localStorage.getItem(RECORDS_KEY);
