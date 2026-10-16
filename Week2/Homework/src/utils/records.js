@@ -10,3 +10,7 @@ export function saveRecord(record) {
   records.push(record);
   localStorage.setItem(RECORDS_KEY, JSON.stringify(records));
 }
+
+export function clearRecords() {
+  localStorage.removeItem(RECORDS_KEY);
+}
