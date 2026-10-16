@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { LEVELS } from "../constants/game";
 import createNumbers from "../utils/createNumbers";
 import useTimer from "./useTimer";
+import { saveRecord } from "../utils/records";
 
 export default function useGame() {
   const { elapsed, startTimer, stopTimer, resetTimer } = useTimer();
@@ -54,7 +55,14 @@ export default function useGame() {
     if (number !== nextNumber || clickTimer.current !== null || isFinished) return;
 
     if (number === 1) startTimer();
-    if (number === totalNumbers) stopTimer();
+    if (number === totalNumbers) {
+      const time = stopTimer();
+      saveRecord({
+        date: new Date().toISOString(),
+        level: Number(level),
+        time,
+      });
+    }
 
     setClickedNumber(number);
 

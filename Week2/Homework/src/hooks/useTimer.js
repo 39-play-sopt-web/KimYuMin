@@ -24,8 +24,12 @@ export default function useTimer() {
     interval.current = null;
 
     if (startedAt.current !== null) {
-      setElapsed(performance.now() - startedAt.current);
+      const time = performance.now() - startedAt.current;
+      setElapsed(time);
+      return time;
     }
+
+    return 0;
   }
 
   function resetTimer() {
