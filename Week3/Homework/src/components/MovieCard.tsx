@@ -25,6 +25,7 @@ function MovieCard({ movie }: MovieCardProps) {
 }
 
 const Card = styled.article`
+  height: 100%;
   overflow: hidden;
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 12px;
@@ -64,6 +65,10 @@ const Overview = styled.p`
   margin-top: 12px;
   color: ${({ theme }) => theme.colors.description};
   font-size: 14px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 `;
 
 export default MovieCard;
