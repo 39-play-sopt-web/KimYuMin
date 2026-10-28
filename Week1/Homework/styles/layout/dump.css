@@ -1,0 +1,35 @@
+.dump-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, 180px);
+  gap: 10px;
+}
+
+.dump-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+
+.dump-grid > .wide {
+  grid-column: span 2;
+}
+
+.dump-grid > .large {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+
+.dump-grid > div {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.dump-grid > div:hover {
+  box-shadow: 0 0 14px var(--color-shadow);
+}
+
+.dump-grid > div:hover img {
+  transform: scale(1.1);
+}

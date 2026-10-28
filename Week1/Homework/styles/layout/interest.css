@@ -1,0 +1,81 @@
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.interest-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  text-align: center;
+  gap: 12px;
+  background-color: var(--color-card);
+  border-radius: 10px;
+  padding-bottom: 16px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.interest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+.interest-card img,
+.interest-card h3 {
+  grid-column: span 2;
+}
+
+.interest-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.interest-card button {
+  border: none;
+  border-radius: 18px;
+  padding: 12px;
+  color: var(--color-card);
+  transition: background-color 0.2s;
+}
+
+.interest-card .like {
+  justify-self: end;
+  background-color: var(--color-button-like);
+}
+
+.interest-card .like:hover {
+  background-color: var(--color-button-like-hover);
+}
+
+.interest-card .dislike {
+  justify-self: start;
+  background-color: var(--color-button-dislike);
+}
+
+.interest-card .dislike:hover {
+  background-color: var(--color-button-dislike-hover);
+}
+
+/* 반응형 */
+@media (max-width: 1400px) {
+  .interest-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1100px) {
+  .interest-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .interest-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
