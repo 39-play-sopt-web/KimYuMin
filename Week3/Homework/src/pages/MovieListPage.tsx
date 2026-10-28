@@ -1,21 +1,45 @@
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
+import { getMovies } from "../api/movie";
 import MovieCard from "../components/MovieCard";
 import type { Movie } from "../types/movie";
 
-const movies: Movie[] = [
-  {
-    id: 1,
-    title: "어느 여름날",
-    posterUrl: null,
-    releaseDate: "2026-07-15",
-    overview: "안녕하세요. 테스트테스트테스트테스트. ",
-  },
-];
-
 function MovieListPage() {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const loadMovies = async () => {
+      try {
+        const data = await getMovies(controller.signal);
+
+        if (!controller.signal.aborted) {
+          setMovies(data);
+        }
+      } catch {
+        if (!controller.signal.aborted) {
+          setError("영화 목록을 불러오지 못했습니다.");
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadMovies();
+
+    return () => controller.abort();
+  }, []);
+
   return (
     <Container>
       <h1>영화 목록</h1>
+      {isLoading && <p>영화를 불러오는 중입니다.</p>}
+      {error && <p>{error}</p>}
       <MovieList>
         {movies.map((movie) => (
           <li key={movie.id}>

@@ -1,0 +1,36 @@
+import axios from "axios";
+import type { Movie } from "../types/movie";
+
+interface MovieListResponse {
+  results: {
+    id: number;
+    title: string;
+    poster_path: string | null;
+    release_date: string;
+    overview: string;
+  }[];
+}
+
+export async function getMovies(signal: AbortSignal): Promise<Movie[]> {
+  const response = await axios.get<MovieListResponse>(
+    `${import.meta.env.VITE_API_BASE_URL}/movie/popular`,
+    {
+      params: {
+        api_key: import.meta.env.VITE_API_KEY,
+        language: "ko-KR",
+        page: 1,
+      },
+      signal,
+    },
+  );
+
+  return response.data.results.map((movie) => ({
+    id: movie.id,
+    title: movie.title,
+    posterUrl: movie.poster_path
+      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+      : null,
+    releaseDate: movie.release_date,
+    overview: movie.overview,
+  }));
+}
