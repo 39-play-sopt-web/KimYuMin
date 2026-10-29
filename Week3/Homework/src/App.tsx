@@ -1,6 +1,7 @@
-import MovieListPage from "./pages/MovieListPage";
+import AppRouter from "./router/AppRouter";
 
 function App() {
-  return <MovieListPage />;
+  return <AppRouter />;
 }
+
 export default App;

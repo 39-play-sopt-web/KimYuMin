@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getMovies } from "../api/movie";
 import MovieCard from "../components/MovieCard";
 import type { Movie } from "../types/movie";
+import { Link } from "react-router";
 
 const ratings = ["전체", "9점 이상", "8~9점", "7~8점", "6~7점", "6점 미만"];
 
@@ -69,7 +70,9 @@ function MovieListPage() {
       <MovieList>
         {filteredMovies.map((movie) => (
           <li key={movie.id}>
-            <MovieCard movie={movie} />
+            <MovieLink to={`/movies/${movie.id}`}>
+              <MovieCard movie={movie} />
+            </MovieLink>
           </li>
         ))}
       </MovieList>
@@ -110,4 +113,12 @@ const FilterButton = styled.button<{ isSelected: boolean }>`
   color: ${({ theme, isSelected }) =>
     isSelected ? theme.colors.background : theme.colors.text};
 `;
+
+const MovieLink = styled(Link)`
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+`;
+
 export default MovieListPage;
