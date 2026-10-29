@@ -47,6 +47,12 @@ function MovieDetailPage() {
 
           <div>
             <h1>{movie.title}</h1>
+            <p>개봉일: {movie.release_date}</p>
+            <p>평점: ★ {movie.vote_average.toFixed(1)}</p>
+            {movie.runtime !== null && <p>상영 시간: {movie.runtime}분</p>}
+            <p>투표 수: {movie.vote_count}명</p>
+            <p>장르: {movie.genres.map((genre) => genre.name).join(", ")}</p>
+            <p>상태: {movie.status}</p>
             <p>{movie.overview}</p>
           </div>
         </MovieHeader>
