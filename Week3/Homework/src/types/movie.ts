@@ -4,4 +4,5 @@ export interface Movie {
   posterUrl: string | null;
   releaseDate: string;
   overview: string;
+  rating: number;
 }

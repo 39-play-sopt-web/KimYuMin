@@ -8,10 +8,11 @@ interface MovieListResponse {
     poster_path: string | null;
     release_date: string;
     overview: string;
+    vote_average: number;
   }[];
 }
 
-export async function getMovies(signal: AbortSignal): Promise<Movie[]> {
+export async function getMovies(): Promise<Movie[]> {
   const response = await axios.get<MovieListResponse>(
     `${import.meta.env.VITE_API_BASE_URL}/movie/popular`,
     {
@@ -20,7 +21,6 @@ export async function getMovies(signal: AbortSignal): Promise<Movie[]> {
         language: "ko-KR",
         page: 1,
       },
-      signal,
     },
   );
 
@@ -32,5 +32,6 @@ export async function getMovies(signal: AbortSignal): Promise<Movie[]> {
       : null,
     releaseDate: movie.release_date,
     overview: movie.overview,
+    rating: movie.vote_average,
   }));
 }
