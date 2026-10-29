@@ -7,9 +7,6 @@ const theme = {
     muted: "#dbe470",
     border: "#333333",
   },
-  fonts: {
-    body: "system-ui, -apple-system, sans-serif",
-  },
 };
 
 export default theme;

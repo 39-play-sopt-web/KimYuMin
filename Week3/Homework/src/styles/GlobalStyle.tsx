@@ -1,4 +1,4 @@
-import { Global, css } from '@emotion/react';
+import { Global, css } from "@emotion/react";
 
 function GlobalStyle() {
   return (
@@ -10,7 +10,6 @@ function GlobalStyle() {
 
         body {
           margin: 0;
-          font-family: ${theme.fonts.body};
           line-height: 1.5;
           color: ${theme.colors.text};
           background-color: ${theme.colors.background};
