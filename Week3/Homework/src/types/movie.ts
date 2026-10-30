@@ -21,4 +21,17 @@ export interface MovieDetail {
     name: string;
   }[];
   status: string;
+  backdrop_path: string | null;
+
+  /* 기본정보 */
+  original_title: string;
+  original_language: string;
+  production_countries: {
+    name: string;
+  }[];
+  spoken_languages: {
+    name: string;
+  }[];
+  budget: number;
+  revenue: number;
 }
