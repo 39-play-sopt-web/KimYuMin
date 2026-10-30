@@ -1,9 +1,8 @@
-import styled from "@emotion/styled";
+import * as S from "./MovieListPage.styles";
 import { useEffect, useState } from "react";
 import { getMovies } from "../api/movie";
 import MovieCard from "../components/MovieCard";
 import type { Movie } from "../types/movie";
-import { Link } from "react-router";
 
 const ratings = ["전체", "9점 이상", "8~9점", "7~8점", "6~7점", "6점 미만"];
 
@@ -49,76 +48,35 @@ function MovieListPage() {
   }, []);
 
   return (
-    <Container>
+    <S.Container>
       <h1>영화 목록</h1>
-      <Filters>
+      <S.Filters>
         {ratings.map((rating) => (
-          <FilterButton
+          <S.FilterButton
             key={rating}
             type="button"
             isSelected={selectedRating === rating}
             onClick={() => setSelectedRating(rating)}
           >
             {rating}
-          </FilterButton>
+          </S.FilterButton>
         ))}
-      </Filters>
+      </S.Filters>
 
       {isLoading && <p>영화를 불러오는 중입니다.</p>}
       {error && <p>{error}</p>}
 
-      <MovieList>
+      <S.MovieList>
         {filteredMovies.map((movie) => (
           <li key={movie.id}>
-            <MovieLink to={`/movies/${movie.id}`}>
+            <S.MovieLink to={`/movies/${movie.id}`}>
               <MovieCard movie={movie} />
-            </MovieLink>
+            </S.MovieLink>
           </li>
         ))}
-      </MovieList>
-    </Container>
+      </S.MovieList>
+    </S.Container>
   );
 }
-
-const Container = styled.main`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 20px;
-`;
-
-const MovieList = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
-  margin: 24px 0 0;
-  padding: 0;
-  list-style: none;
-`;
-
-const Filters = styled.div`
-  display: flex;
-  gap: 8px;
-  margin-top: 20px;
-`;
-
-const FilterButton = styled.button<{ isSelected: boolean }>`
-  padding: 8px 16px;
-  border: 0;
-  border-radius: 20px;
-  cursor: pointer;
-
-  background-color: ${({ theme, isSelected }) =>
-    isSelected ? theme.colors.muted : theme.colors.card};
-
-  color: ${({ theme, isSelected }) =>
-    isSelected ? theme.colors.background : theme.colors.text};
-`;
-
-const MovieLink = styled(Link)`
-  display: block;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-`;
 
 export default MovieListPage;
