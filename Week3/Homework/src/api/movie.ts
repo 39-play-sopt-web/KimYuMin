@@ -1,4 +1,5 @@
 import apiClient from "./client";
+import { ratings } from "../constants/ratings";
 import type { Movie, MovieDetail } from "../types/movie";
 
 interface MovieListResponse {
@@ -16,12 +17,19 @@ interface MovieListResponse {
 
 export async function getMovies(
   page: number = 1,
+  rating: string = "전체",
 ): Promise<{ movies: Movie[]; totalPages: number }> {
+  const range = ratings.find(
+    (item) => item.label === rating && item.label !== "전체",
+  );
+
   const response = await apiClient.get<MovieListResponse>(
-    "/movie/popular",
+    range ? "/discover/movie" : "/movie/popular",
     {
       params: {
         page: page,
+        "vote_average.gte": range?.min,
+        "vote_average.lte": range?.max,
       },
     },
   );

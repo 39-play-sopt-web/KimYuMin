@@ -2,9 +2,8 @@ import * as S from "./MovieListPage.styles";
 import { useEffect, useRef, useState } from "react";
 import { getMovies } from "../api/movie";
 import MovieCard from "../components/MovieCard";
+import { ratings } from "../constants/ratings";
 import type { Movie } from "../types/movie";
-
-const ratings = ["전체", "9점 이상", "8~9점", "7~8점", "6~7점", "6점 미만"];
 
 function MovieListPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -15,33 +14,27 @@ function MovieListPage() {
   const [totalPages, setTotalPages] = useState(1);
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
+  const selectedRange = ratings.find((rating) => rating.label === selectedRating);
   const filteredMovies =
-    selectedRating === "전체"
+    selectedRating === "전체" || !selectedRange
       ? movies
-      : movies.filter((movie) => {
-          switch (selectedRating) {
-            case "9점 이상":
-              return movie.rating >= 9;
-            case "8~9점":
-              return movie.rating >= 8 && movie.rating < 9;
-            case "7~8점":
-              return movie.rating >= 7 && movie.rating < 8;
-            case "6~7점":
-              return movie.rating >= 6 && movie.rating < 7;
-            case "6점 미만":
-              return movie.rating < 6;
-            default:
-              return true;
-          }
-        });
+      : movies.filter(
+          (movie) =>
+            movie.rating >= selectedRange.min &&
+            (selectedRange.max === undefined || movie.rating < selectedRange.max),
+        );
 
   useEffect(() => {
+    let isActive = true;
+
     const loadMovies = async () => {
       setError("");
       setIsLoading(true);
 
       try {
-        const data = await getMovies(page);
+        const data = await getMovies(page, selectedRating);
+        if (!isActive) return;
+
         setMovies((prevMovies) => {
           if (page === 1) {
             return data.movies;
@@ -55,14 +48,21 @@ function MovieListPage() {
         });
         setTotalPages(data.totalPages);
       } catch {
+        if (!isActive) return;
         setError("영화 목록을 불러오지 못했습니다.");
       } finally {
-        setIsLoading(false);
+        if (isActive) {
+          setIsLoading(false);
+        }
       }
     };
 
     loadMovies();
-  }, [page]);
+
+    return () => {
+      isActive = false;
+    };
+  }, [page, selectedRating]);
 
   useEffect(() => {
     if (isLoading || error || page >= totalPages) return;
@@ -92,12 +92,19 @@ function MovieListPage() {
       <S.Filters>
         {ratings.map((rating) => (
           <S.FilterButton
-            key={rating}
+            key={rating.label}
             type="button"
-            isSelected={selectedRating === rating}
-            onClick={() => setSelectedRating(rating)}
+            isSelected={selectedRating === rating.label}
+            onClick={() => {
+              if (rating.label === selectedRating) return;
+
+              setIsLoading(true);
+              setMovies([]);
+              setPage(1);
+              setSelectedRating(rating.label);
+            }}
           >
-            {rating}
+            {rating.label}
           </S.FilterButton>
         ))}
       </S.Filters>
