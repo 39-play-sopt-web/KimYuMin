@@ -41,3 +41,7 @@ export const MovieLink = styled(Link)`
   color: inherit;
   text-decoration: none;
 `;
+
+export const ScrollTarget = styled.div`
+  height: 1px;
+`;

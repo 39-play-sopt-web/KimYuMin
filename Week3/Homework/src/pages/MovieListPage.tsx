@@ -1,5 +1,5 @@
 import * as S from "./MovieListPage.styles";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getMovies } from "../api/movie";
 import MovieCard from "../components/MovieCard";
 import type { Movie } from "../types/movie";
@@ -11,6 +11,9 @@ function MovieListPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedRating, setSelectedRating] = useState("전체");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
 
   const filteredMovies =
     selectedRating === "전체"
@@ -34,9 +37,23 @@ function MovieListPage() {
 
   useEffect(() => {
     const loadMovies = async () => {
+      setError("");
+      setIsLoading(true);
+
       try {
-        const data = await getMovies();
-        setMovies(data);
+        const data = await getMovies(page);
+        setMovies((prevMovies) => {
+          if (page === 1) {
+            return data.movies;
+          }
+
+          const newMovies = data.movies.filter(
+            (movie) => !prevMovies.some((prevMovie) => prevMovie.id === movie.id),
+          );
+
+          return [...prevMovies, ...newMovies];
+        });
+        setTotalPages(data.totalPages);
       } catch {
         setError("영화 목록을 불러오지 못했습니다.");
       } finally {
@@ -45,7 +62,29 @@ function MovieListPage() {
     };
 
     loadMovies();
-  }, []);
+  }, [page]);
+
+  useEffect(() => {
+    if (isLoading || error || page >= totalPages) return;
+
+    const target = loadMoreRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          observer.disconnect();
+          setIsLoading(true);
+          setPage((prevPage) => prevPage + 1);
+        }
+      },
+      { rootMargin: "0px 0px 300px 0px" },
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, [isLoading, error, page, totalPages, selectedRating]);
 
   return (
     <S.Container>
@@ -75,6 +114,8 @@ function MovieListPage() {
           </li>
         ))}
       </S.MovieList>
+
+      <S.ScrollTarget ref={loadMoreRef} />
     </S.Container>
   );
 }

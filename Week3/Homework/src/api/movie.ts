@@ -2,6 +2,8 @@ import apiClient from "./client";
 import type { Movie, MovieDetail } from "../types/movie";
 
 interface MovieListResponse {
+  total_pages: number;
+
   results: {
     id: number;
     title: string;
@@ -12,17 +14,19 @@ interface MovieListResponse {
   }[];
 }
 
-export async function getMovies(): Promise<Movie[]> {
+export async function getMovies(
+  page: number = 1,
+): Promise<{ movies: Movie[]; totalPages: number }> {
   const response = await apiClient.get<MovieListResponse>(
     "/movie/popular",
     {
       params: {
-        page: 1,
+        page: page,
       },
     },
   );
 
-  return response.data.results.map((movie) => ({
+  const movies = response.data.results.map((movie) => ({
     id: movie.id,
     title: movie.title,
     posterUrl: movie.poster_path
@@ -32,6 +36,10 @@ export async function getMovies(): Promise<Movie[]> {
     overview: movie.overview,
     rating: movie.vote_average,
   }));
+  return {
+    movies: movies,
+    totalPages: Math.min(response.data.total_pages, 500),
+  };
 }
 
 export async function getMovieDetail(movieId: string): Promise<MovieDetail> {
