@@ -14,6 +14,10 @@ export const MovieList = styled.ul`
   margin: 24px 0 0;
   padding: 0;
   list-style: none;
+
+  li {
+    min-width: 0;
+  }
 `;
 
 export const Filters = styled.div`

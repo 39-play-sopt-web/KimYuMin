@@ -37,10 +37,14 @@ const Card = styled.article`
 `;
 
 const PosterArea = styled.div`
+  position: relative;
   aspect-ratio: 2 / 3;
+  overflow: hidden;
 `;
 
 const Poster = styled.img`
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -53,6 +57,7 @@ const Content = styled.div`
 
 const Title = styled.h2`
   font-size: 20px;
+  overflow-wrap: anywhere;
 `;
 
 const ReleaseDate = styled.p`
