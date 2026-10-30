@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>유민's 블로그</title>
+    <!-- 공통 -->
+    <link rel="stylesheet" href="./styles/common/base.css" />
+    <link rel="stylesheet" href="./styles/common/color.css" />
+
+    <!-- 영역 별 -->
+    <link rel="stylesheet" href="styles/layout/header.css" />
+    <link rel="stylesheet" href="styles/layout/navigation.css" />
+    <link rel="stylesheet" href="styles/layout/dump.css" />
+    <link rel="stylesheet" href="styles/layout/album.css" />
+    <link rel="stylesheet" href="styles/layout/interest.css" />
+    <link rel="stylesheet" href="styles/layout/to-web.css" />
+    <link rel="stylesheet" href="styles/layout/footer.css" />
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <header class="header">
+      <img class="avatar" src="images/avatar.png" alt="프로필 사진" />
+      <h1>유민's 블로그</h1>
+      <a href="https://github.com/yumin-kim2">
+        <img class="logo" src="images/github.png" alt="깃허브 소셜 아이콘" />
+      </a>
+    </header>
+
+    <!-- 사이드 네비게이션-->
+    <div class="page-layout">
+      <nav class="nav">
+        <ul>
+          <li><a href="#dump">📷 포토 덤프</a></li>
+          <li><a href="#album">💕 좋아하는 것</a></li>
+          <li><a href="#interest">🌝 내 관심사</a></li>
+          <li><a href="#to-web">To.웹토리</a></li>
+        </ul>
+      </nav>
+
+      <main>
+        <!-- 포토 덤프 -->
+        <section id="dump">
+          <h2>📷 포토 덤프</h2>
+          <div class="dump-grid">
+            <div>
+              <img src="images/photo dump/dump1.jpeg" alt="별" />
+            </div>
+            <div>
+              <img src="images/photo dump/dump2.jpeg" alt="티모" />
+            </div>
+            <div class="wide">
+              <img src="images/photo dump/dump3.jpeg" alt="워크샵 2조" />
+            </div>
+            <div class="large">
+              <img src="images/photo dump/dump4.jpeg" alt="도토리" />
+            </div>
+            <div>
+              <img src="images/photo dump/dump5.jpeg" alt="불꽃" />
+            </div>
+            <div>
+              <img src="images/photo dump/dump6.jpeg" alt="거울샷" />
+            </div>
+          </div>
+        </section>
+
+        <!-- 사진첩 -->
+        <section id="album">
+          <h2>💕 좋아하는 것: 먼작귀 ( ´͈ ᵕ `͈ )◞♡</h2>
+          <div class="album-list">
+            <div class="album-track">
+              <div class="album-group">
+                <img src="images/photo album/album1.jpeg" alt="" />
+                <img src="images/photo album/album2.jpeg" alt="" />
+                <img src="images/photo album/album3.jpeg" alt="" />
+                <img src="images/photo album/album4.jpeg" alt="" />
+                <img src="images/photo album/album5.jpeg" alt="" />
+                <img src="images/photo album/album6.jpeg" alt="" />
+                <img src="images/photo album/album7.jpeg" alt="" />
+                <img src="images/photo album/album8.jpeg" alt="" />
+              </div>
+              <div class="album-group" aria-hidden="true">
+                <img src="images/photo album/album1.jpeg" alt="" />
+                <img src="images/photo album/album2.jpeg" alt="" />
+                <img src="images/photo album/album3.jpeg" alt="" />
+                <img src="images/photo album/album4.jpeg" alt="" />
+                <img src="images/photo album/album5.jpeg" alt="" />
+                <img src="images/photo album/album6.jpeg" alt="" />
+                <img src="images/photo album/album7.jpeg" alt="" />
+                <img src="images/photo album/album8.jpeg" alt="" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 관심사 -->
+        <section id="interest">
+          <h2>🌝 내 관심사</h2>
+          <div class="interest-grid">
+            <div class="interest-card">
+              <img src="images/interest/interest1.jpg" alt="말차라떼" />
+              <h3>말차 라떼</h3>
+              <button class="like" type="button">좋아요</button>
+              <button class="dislike" type="button">싫어요</button>
+            </div>
+
+            <div class="interest-card">
+              <img src="images/interest/interest2.jpeg" alt="화덕피자" />
+              <h3>화덕피자</h3>
+              <button class="like" type="button">좋아요</button>
+              <button class="dislike" type="button">싫어요</button>
+            </div>
+
+            <div class="interest-card">
+              <img src="images/interest/interest3.jpeg" alt="케이크" />
+              <h3>케이크</h3>
+              <button class="like" type="button">좋아요</button>
+              <button class="dislike" type="button">싫어요</button>
+            </div>
+
+            <div class="interest-card">
+              <img src="images/interest/interest4.jpeg" alt="젤라또" />
+              <h3>젤라또</h3>
+              <button class="like" type="button">좋아요</button>
+              <button class="dislike" type="button">싫어요</button>
+            </div>
+
+            <div class="interest-card">
+              <img src="images/interest/interest5.jpeg" alt="빙수" />
+              <h3>빙수</h3>
+              <button class="like" type="button">좋아요</button>
+              <button class="dislike" type="button">싫어요</button>
+            </div>
+
+            <div class="interest-card">
+              <img src="images/interest/interest6.jpeg" alt="마시멜로우" />
+              <h3>마시멜로우</h3>
+              <button class="like" type="button">좋아요</button>
+              <button class="dislike" type="button">싫어요</button>
+            </div>
+
+            <div class="interest-card">
+              <img src="images/interest/interest7.jpeg" alt="치킨" />
+              <h3>치킨</h3>
+              <button class="like" type="button">좋아요</button>
+              <button class="dislike" type="button">싫어요</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 웹토리 -->
+        <section class="to-web" id="to-web">
+          <h2>To.웹토리</h2>
+          <div class="message">
+            <p>웹토리</p>
+            <p>아자아자</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+      <h2>The End</h2>
+    </footer>
+  </body>
+</html>

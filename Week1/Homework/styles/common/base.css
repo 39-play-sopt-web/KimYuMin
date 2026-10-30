@@ -1,0 +1,49 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background-gradient);
+  color: var(--color-text);
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* 페이지 전체 배치 */
+.page-layout {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+  padding: 150px 50px 40px;
+}
+
+.page-layout > main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+main > section {
+  scroll-margin-top: 100px;
+}
+
+main > section > h2 {
+  margin-bottom: 40px;
+}
