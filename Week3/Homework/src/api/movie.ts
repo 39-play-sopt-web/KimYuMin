@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiClient from "./client";
 import type { Movie, MovieDetail } from "../types/movie";
 
 interface MovieListResponse {
@@ -13,12 +13,10 @@ interface MovieListResponse {
 }
 
 export async function getMovies(): Promise<Movie[]> {
-  const response = await axios.get<MovieListResponse>(
-    `${import.meta.env.VITE_API_BASE_URL}/movie/popular`,
+  const response = await apiClient.get<MovieListResponse>(
+    "/movie/popular",
     {
       params: {
-        api_key: import.meta.env.VITE_API_KEY,
-        language: "ko-KR",
         page: 1,
       },
     },
@@ -37,15 +35,7 @@ export async function getMovies(): Promise<Movie[]> {
 }
 
 export async function getMovieDetail(movieId: string): Promise<MovieDetail> {
-  const response = await axios.get<MovieDetail>(
-    `${import.meta.env.VITE_API_BASE_URL}/movie/${movieId}`,
-    {
-      params: {
-        api_key: import.meta.env.VITE_API_KEY,
-        language: "ko-KR",
-      },
-    },
-  );
+  const response = await apiClient.get<MovieDetail>(`/movie/${movieId}`);
 
   return response.data;
 }
