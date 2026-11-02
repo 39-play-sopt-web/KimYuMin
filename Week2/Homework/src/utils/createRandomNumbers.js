@@ -5,10 +5,10 @@ export default function createRandomNumbers(start, end) {
     numbers.push(number);
   }
 
-  return random(numbers);
+  return shuffle(numbers);
 }
 
-function random(numbers) {
+function shuffle(numbers) {
   const result = [...numbers];
 
   for (let i = result.length - 1; i > 0; i--) {
