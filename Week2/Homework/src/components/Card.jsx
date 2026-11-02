@@ -2,8 +2,7 @@ export default function Card({ number, selected = false, invisible = false, onCl
   return (
     <button
       type="button"
-      value={number}
-      onClick={onClick}
+      onClick={() => onClick(number)}
       aria-pressed={selected}
       className={`aspect-square w-28 rounded border border-border bg-card aria-pressed:bg-selected ${invisible ? "invisible" : ""}`}
     >

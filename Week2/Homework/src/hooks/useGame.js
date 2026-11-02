@@ -49,9 +49,7 @@ export default function useGame() {
     resetGame(level);
   }
 
-  function handleNumberClick(event) {
-    const number = Number(event.currentTarget.value);
-
+  function handleNumberClick(number) {
     if (number !== nextNumber || clickTimer.current !== null || isFinished) return;
 
     if (number === 1) startTimer();
