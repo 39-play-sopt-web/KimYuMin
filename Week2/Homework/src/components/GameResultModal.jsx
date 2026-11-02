@@ -2,12 +2,12 @@ import { createPortal } from "react-dom";
 import useModal from "../hooks/useModal";
 
 export default function GameResultModal({ level, elapsed, onConfirm }) {
-  const { dialogRef, preventClose } = useModal();
+  const { dialogRef } = useModal();
 
   return createPortal(
     <dialog
       ref={dialogRef}
-      onCancel={preventClose}
+      onCancel={onConfirm}
       aria-labelledby="result-title"
       className="fixed inset-0 m-auto w-80 max-w-full rounded-2xl bg-card px-7 py-8 text-center text-primary backdrop:bg-primary/50"
     >

@@ -10,9 +10,5 @@ export default function useModal() {
     return () => dialog.close();
   }, []);
 
-  function preventClose(event) {
-    event.preventDefault();
-  }
-
-  return { dialogRef, preventClose };
+  return { dialogRef };
 }
