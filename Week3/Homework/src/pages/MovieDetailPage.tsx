@@ -41,6 +41,25 @@ function MovieDetailPage() {
     };
   }, [movieId]);
 
+  const basicInfo = movie
+    ? [
+        { label: "원제", value: movie.original_title },
+        { label: "원어", value: movie.original_language },
+        {
+          label: "제작 국가",
+          value: movie.production_countries
+            .map((country) => country.name)
+            .join(", "),
+        },
+        {
+          label: "사용 언어",
+          value: movie.spoken_languages.map((language) => language.name).join(", "),
+        },
+        { label: "예산", value: `$${movie.budget.toLocaleString("en-US")}` },
+        { label: "수익", value: `$${movie.revenue.toLocaleString("en-US")}` },
+      ]
+    : [];
+
   return (
     <S.Container>
       <S.BackLink to="/">⇠ 목록으로 돌아가기</S.BackLink>
@@ -85,43 +104,12 @@ function MovieDetailPage() {
             <h2>기본 정보</h2>
 
             <S.InfoGrid>
-              <S.InfoCard>
-                <span>원제</span>
-                <p>{movie.original_title}</p>
-              </S.InfoCard>
-
-              <S.InfoCard>
-                <span>원어</span>
-                <p>{movie.original_language}</p>
-              </S.InfoCard>
-
-              <S.InfoCard>
-                <span>제작 국가</span>
-                <p>
-                  {movie.production_countries
-                    .map((country) => country.name)
-                    .join(", ")}
-                </p>
-              </S.InfoCard>
-
-              <S.InfoCard>
-                <span>사용 언어</span>
-                <p>
-                  {movie.spoken_languages
-                    .map((language) => language.name)
-                    .join(", ")}
-                </p>
-              </S.InfoCard>
-
-              <S.InfoCard>
-                <span>예산</span>
-                <p>${movie.budget.toLocaleString("en-US")}</p>
-              </S.InfoCard>
-
-              <S.InfoCard>
-                <span>수익</span>
-                <p>${movie.revenue.toLocaleString("en-US")}</p>
-              </S.InfoCard>
+              {basicInfo.map((info) => (
+                <S.InfoCard key={info.label}>
+                  <span>{info.label}</span>
+                  <p>{info.value}</p>
+                </S.InfoCard>
+              ))}
             </S.InfoGrid>
           </S.BasicInfo>
         </>
