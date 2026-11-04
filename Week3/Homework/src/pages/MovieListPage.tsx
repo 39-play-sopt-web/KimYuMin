@@ -31,8 +31,9 @@ function MovieListPage() {
             return data.movies;
           }
 
+          const movieIds = new Set(prevMovies.map((movie) => movie.id));
           const newMovies = data.movies.filter(
-            (movie) => !prevMovies.some((prevMovie) => prevMovie.id === movie.id),
+            (movie) => !movieIds.has(movie.id),
           );
 
           return [...prevMovies, ...newMovies];
