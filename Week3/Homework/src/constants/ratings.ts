@@ -1,4 +1,10 @@
-export const ratings = [
+export interface RatingFilter {
+  label: string;
+  min: number;
+  max?: number;
+}
+
+export const ratings: RatingFilter[] = [
   { label: "전체", min: 0 },
   { label: "9점 이상", min: 9 },
   { label: "8~9점", min: 8, max: 9 },

@@ -3,26 +3,17 @@ import { useEffect, useRef, useState } from "react";
 import { getMovies } from "../api/movie";
 import MovieCard from "../components/MovieCard";
 import { ratings } from "../constants/ratings";
+import type { RatingFilter } from "../constants/ratings";
 import type { Movie } from "../types/movie";
 
 function MovieListPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const [selectedRating, setSelectedRating] = useState("전체");
+  const [selectedRating, setSelectedRating] = useState(ratings[0]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const loadMoreRef = useRef<HTMLDivElement>(null);
-
-  const selectedRange = ratings.find((rating) => rating.label === selectedRating);
-  const filteredMovies =
-    selectedRating === "전체" || !selectedRange
-      ? movies
-      : movies.filter(
-          (movie) =>
-            movie.rating >= selectedRange.min &&
-            (selectedRange.max === undefined || movie.rating < selectedRange.max),
-        );
 
   useEffect(() => {
     let isActive = true;
@@ -86,6 +77,15 @@ function MovieListPage() {
     return () => observer.disconnect();
   }, [isLoading, error, page, totalPages, selectedRating]);
 
+  const handleRatingChange = (rating: RatingFilter) => {
+    if (rating.label === selectedRating.label) return;
+
+    setIsLoading(true);
+    setMovies([]);
+    setPage(1);
+    setSelectedRating(rating);
+  };
+
   return (
     <S.Container>
       <h1>영화 목록</h1>
@@ -94,15 +94,8 @@ function MovieListPage() {
           <S.FilterButton
             key={rating.label}
             type="button"
-            isSelected={selectedRating === rating.label}
-            onClick={() => {
-              if (rating.label === selectedRating) return;
-
-              setIsLoading(true);
-              setMovies([]);
-              setPage(1);
-              setSelectedRating(rating.label);
-            }}
+            isSelected={selectedRating.label === rating.label}
+            onClick={() => handleRatingChange(rating)}
           >
             {rating.label}
           </S.FilterButton>
@@ -113,7 +106,7 @@ function MovieListPage() {
       {error && <p>{error}</p>}
 
       <S.MovieList>
-        {filteredMovies.map((movie) => (
+        {movies.map((movie) => (
           <li key={movie.id}>
             <S.MovieLink to={`/movies/${movie.id}`}>
               <MovieCard movie={movie} />
