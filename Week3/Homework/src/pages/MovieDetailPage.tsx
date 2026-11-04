@@ -11,6 +11,8 @@ function MovieDetailPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    let isActive = true;
+
     const loadMovie = async () => {
       if (!movieId) return;
 
@@ -20,15 +22,23 @@ function MovieDetailPage() {
 
       try {
         const data = await getMovieDetail(movieId);
+        if (!isActive) return;
         setMovie(data);
       } catch {
+        if (!isActive) return;
         setError("영화 정보를 불러오지 못했습니다.");
       } finally {
-        setIsLoading(false);
+        if (isActive) {
+          setIsLoading(false);
+        }
       }
     };
 
     loadMovie();
+
+    return () => {
+      isActive = false;
+    };
   }, [movieId]);
 
   return (
