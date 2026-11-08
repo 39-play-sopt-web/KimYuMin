@@ -1,0 +1,12 @@
+@theme inline {
+  --color-background: var(--cream-100);
+  --color-surface: var(--paper);
+  --color-foreground: var(--green-900);
+  --color-muted: var(--stone-500);
+  --color-border: var(--stone-200);
+  --color-primary: var(--green-600);
+  --color-primary-hover: var(--green-700);
+  --color-soft: var(--green-50);
+  --color-soft-border: var(--green-200);
+  --color-danger: var(--red-600);
+}
