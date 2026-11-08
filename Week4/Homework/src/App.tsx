@@ -4,6 +4,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import AuthPage from './pages/AuthPage'
 import PostListPage from './pages/PostListPage'
 import PostWritePage from './pages/PostWritePage'
+import PostDetailPage from './pages/PostDetailPage'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/posts/new" element={<PostWritePage />} />
         </Route>
-        <Route path="/posts/:postId" element={<h1>게시글 상세</h1>} />
+        <Route path="/posts/:postId" element={<PostDetailPage />} />
       </Routes>
     </>
   )

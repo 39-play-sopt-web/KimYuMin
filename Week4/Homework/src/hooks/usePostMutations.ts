@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import { createPost } from "../api/posts";
+import { createPost, deletePost, updatePost } from "../api/posts";
+import type { UpdatePostRequest } from "../types/post";
 
 export function useCreatePostMutation() {
   const queryClient = useQueryClient();
@@ -15,6 +16,37 @@ export function useCreatePostMutation() {
     },
     onError: () => {
       window.alert("게시글 작성에 실패했어요.");
+    },
+  });
+}
+
+export function useUpdatePostMutation(postId: number) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: UpdatePostRequest) => updatePost(postId, payload),
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["posts"] }),
+        queryClient.invalidateQueries({ queryKey: ["post", postId] }),
+      ]);
+      window.alert("게시글을 수정했어요.");
+    },
+    onError: () => {
+      window.alert("게시글 수정에 실패했어요.");
+    },
+  });
+}
+
+export function useDeletePostMutation(postId: number) {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: () => deletePost(postId),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["posts"] });
+      navigate("/posts");
     },
   });
 }

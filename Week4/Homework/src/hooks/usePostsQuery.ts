@@ -1,5 +1,5 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
-import { getPosts } from '../api/posts'
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
+import { getPostDetail, getPosts } from '../api/posts'
 
 export function usePostsQuery(keyword: string) {
   return useInfiniteQuery({
@@ -8,5 +8,13 @@ export function usePostsQuery(keyword: string) {
     initialPageParam: undefined as number | undefined,
     getNextPageParam: (lastPage) =>
       lastPage.hasNext ? lastPage.nextCursor ?? undefined : undefined,
+  })
+}
+
+export function usePostDetailQuery(postId: number) {
+  return useQuery({
+    queryKey: ['post', postId],
+    queryFn: () => getPostDetail(postId),
+    enabled: Number.isSafeInteger(postId) && postId > 0,
   })
 }

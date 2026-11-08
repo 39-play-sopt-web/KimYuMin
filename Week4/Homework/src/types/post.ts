@@ -37,3 +37,15 @@ export type PostDetailResponse = {
   message: string
   data: Post | null
 }
+
+export type UpdatePostRequest = {
+  title: string
+  content: string
+}
+
+export type DeletePostResponse = {
+  isSuccess: boolean
+  code: string
+  message: string
+  data: null
+}
