@@ -4,6 +4,22 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground;
+    @apply m-0 bg-background text-foreground;
+    min-width: 320px;
+    line-height: 1.6;
   }
+  #root { min-height: 100svh; }
+  button:not(:disabled), select:not(:disabled) { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  ::selection { background: var(--green-200); }
+  :focus-visible { outline: 2px solid var(--green-600); outline-offset: 3px; }
+}
+
+@layer components {
+  .page-shell { @apply mx-auto w-full max-w-3xl px-5 py-7; }
+  .field { @apply min-h-10 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm outline-none placeholder:text-muted/75 focus:border-primary; }
+  .field[aria-invalid="true"] { @apply border-danger; }
+  .button-primary { @apply inline-flex min-h-10 items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors enabled:hover:bg-primary-hover disabled:opacity-40; }
+  .button-secondary { @apply inline-flex min-h-10 items-center justify-center rounded-lg border border-border px-4 py-2 text-sm transition-colors hover:bg-soft; }
+  .state-panel { @apply py-12 text-center text-sm text-muted; }
 }

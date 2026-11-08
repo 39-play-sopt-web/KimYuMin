@@ -51,11 +51,11 @@ export default function PostDetailPage() {
 
   if (!Number.isSafeInteger(id) || id <= 0) {
     return (
-      <section className="p-4">
-        <p>올바르지 않은 게시글 주소예요.</p>
+      <section className="page-shell">
+        <p className="state-panel">올바르지 않은 게시글 주소예요.</p>
         <Link
           to="/posts"
-          className="text-sm mt-6"
+          className="text-sm text-muted hover:text-primary mt-6"
         >
           ← 뒤로가기
         </Link>
@@ -65,11 +65,11 @@ export default function PostDetailPage() {
 
   if (isPending) {
     return (
-      <section className="p-4">
-        <p>게시글을 불러오는 중.</p>
+      <section className="page-shell">
+        <p className="state-panel">게시글을 불러오는 중.</p>
         <Link
           to="/posts"
-          className="text-sm mt-6"
+          className="text-sm text-muted hover:text-primary mt-6"
         >
           ← 뒤로가기
         </Link>
@@ -79,13 +79,13 @@ export default function PostDetailPage() {
 
   if (isError || !post) {
     return (
-      <section className="p-4">
-        <p role="alert">
+      <section className="page-shell">
+        <p role="alert" className="state-panel text-danger">
           게시글 상세 조회에 실패했어요.
         </p>
         <Link
           to="/posts"
-          className="text-sm mt-6"
+          className="text-sm text-muted hover:text-primary mt-6"
         >
           ← 뒤로가기
         </Link>
@@ -94,15 +94,15 @@ export default function PostDetailPage() {
   }
 
   return (
-    <section className="p-4">
+    <section className="page-shell">
       <Link
         to="/posts"
-        className="text-sm mb-5 inline-block"
+        className="text-sm text-muted hover:text-primary mb-5 inline-block"
       >
         뒤로가기
       </Link>
-      <article className="rounded-xl border p-5 sm:p-6">
-        <h1 className="mb-4 text-sm">게시글 상세</h1>
+      <article className="rounded-xl border border-border bg-surface p-5 sm:p-6">
+        <h1 className="mb-4 text-sm text-muted">게시글 상세</h1>
         {editingId === id ? (
           <form onSubmit={handleUpdate} className="flex flex-col gap-4">
             <label htmlFor="edit-title" className="text-sm font-medium">
@@ -112,7 +112,7 @@ export default function PostDetailPage() {
               id="edit-title"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
-              className="border p-2"
+              className="field"
             />
             <label htmlFor="edit-content" className="text-sm font-medium mt-3">
               본문
@@ -121,18 +121,18 @@ export default function PostDetailPage() {
               id="edit-content"
               value={content}
               onChange={(event) => setContent(event.target.value)}
-              className="border p-2 min-h-72 resize-y"
+              className="field min-h-72 resize-y"
             />
-            <button type="submit" className="border px-4 py-2 mt-3 self-end">
+            <button type="submit" className="button-primary mt-3 self-end">
               수정 완료
             </button>
           </form>
         ) : (
           <h2 className="text-xl font-semibold break-words">{post.title}</h2>
         )}
-        <div className="mt-3 flex flex-wrap items-center gap-3 border-b pb-4 text-xs">
+        <div className="mt-3 flex flex-wrap items-center gap-3 border-b border-border pb-4 text-xs">
           <span className="font-medium text-primary">{post.author}</span>
-          <time dateTime={post.createdAt}>
+          <time dateTime={post.createdAt} className="text-muted">
             {new Date(post.createdAt).toLocaleString("ko-KR")}
           </time>
         </div>
@@ -141,12 +141,12 @@ export default function PostDetailPage() {
             {post.content}
           </p>
         )}
-        <div className="flex justify-end gap-2 border-t pt-4">
+        <div className="flex justify-end gap-2 border-t border-border pt-4">
           {editingId !== id && (
             <button
               type="button"
               onClick={handleEdit}
-              className="border px-4 py-2"
+              className="button-secondary"
             >
               수정
             </button>
@@ -154,13 +154,13 @@ export default function PostDetailPage() {
           <button
             type="button"
             onClick={handleDelete}
-            className="border px-4 py-2"
+            className="button-secondary text-danger"
           >
             삭제
           </button>
         </div>
         {deleteMutation.isError && (
-          <p role="alert" className="text-sm mt-4 text-right">
+          <p role="alert" className="text-sm text-danger mt-4 text-right">
             게시글 삭제에 실패했어요.
           </p>
         )}

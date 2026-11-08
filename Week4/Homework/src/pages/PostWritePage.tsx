@@ -33,10 +33,17 @@ export default function PostWritePage() {
   }
 
   return (
-    <section className="p-4">
-      <h1 className="text-2xl font-bold">게시글 작성</h1>
-      <form onSubmit={handleSubmit} className="mt-4 flex flex-col items-start gap-4">
-        <label htmlFor={step}>{LABELS[step]}</label>
+    <section className="page-shell">
+      <h1 className="text-xl font-semibold">게시글 작성</h1>
+      <p className="my-5 text-sm text-muted">
+        <span className={step === 'title' ? 'font-medium text-primary' : ''}>제목</span>
+        {' → '}
+        <span className={step === 'content' ? 'font-medium text-primary' : ''}>본문</span>
+        {' → '}
+        <span className={step === 'author' ? 'font-medium text-primary' : ''}>작성자</span>
+      </p>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <label htmlFor={step} className="text-sm font-medium">{LABELS[step]}</label>
         {step === 'content' ? (
           <textarea
             id={step}
@@ -44,7 +51,7 @@ export default function PostWritePage() {
             onChange={(event) => setForm({ ...form, [step]: event.target.value })}
             aria-invalid={isTooLong}
             aria-describedby={isTooLong ? 'write-error content-count' : 'content-count'}
-            className="min-h-40 w-full border p-2"
+            className="field min-h-56 resize-y"
           />
         ) : (
           <input
@@ -54,17 +61,17 @@ export default function PostWritePage() {
             onChange={(event) => setForm({ ...form, [step]: event.target.value })}
             aria-invalid={isTooLong}
             aria-describedby={isTooLong ? 'write-error' : undefined}
-            className="border p-2"
+            className="field"
           />
         )}
 
-        {step === 'content' && <p id="content-count">{value.length} / 1000</p>}
-        {isTooLong && <p id="write-error" role="alert">{LABELS[step]}은 {limit}자 이하로 입력해주세요.</p>}
+        {step === 'content' && <p id="content-count" className="text-right text-xs tabular-nums text-muted">{value.length} / 1000</p>}
+        {isTooLong && <p id="write-error" role="alert" className="text-sm text-danger">{LABELS[step]}은 {limit}자 이하로 입력해주세요.</p>}
 
-        <button type="submit" disabled={isInvalid} className="border px-4 py-2">
+        <button type="submit" disabled={isInvalid} className="button-primary mt-2 self-end">
           {step === 'author' ? '작성' : '다음'}
         </button>
-        <Link to="/posts" className="underline">게시글 목록으로</Link>
+        <Link to="/posts" className="button-secondary self-end">게시글 목록으로</Link>
       </form>
     </section>
   )
