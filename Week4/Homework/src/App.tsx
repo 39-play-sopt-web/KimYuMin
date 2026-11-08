@@ -1,13 +1,18 @@
 import { Route, Routes } from 'react-router'
+import Header from './components/Header'
 import AuthPage from './pages/AuthPage'
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<AuthPage />} />
-      <Route path="/auth" element={<AuthPage />} />
-      <Route path="/posts" element={<h1>게시글 목록</h1>} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<AuthPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/posts" element={<h1>게시글 목록</h1>} />
+        <Route path="/posts/new" element={<h1>게시글 작성</h1>} />
+      </Routes>
+    </>
   )
 }
 
