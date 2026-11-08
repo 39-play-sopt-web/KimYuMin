@@ -1,0 +1,6 @@
+@theme inline {
+  --color-background: var(--color-white);
+  --color-foreground: var(--color-black);
+  --color-primary: var(--color-gray-100);
+  --color-primary-hover: var(--color-gray-200);
+}
