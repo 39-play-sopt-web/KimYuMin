@@ -24,3 +24,16 @@ export type PostListResponse = {
   message: string
   data: PostListData | null
 }
+
+export type CreatePostRequest = {
+  title: string
+  content: string
+  author: string
+}
+
+export type PostDetailResponse = {
+  isSuccess: boolean
+  code: string
+  message: string
+  data: Post | null
+}
